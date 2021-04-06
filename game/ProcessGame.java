@@ -197,15 +197,19 @@ public class ProcessGame {
                 }
             }
         }
+
         if (first == FIELD_SIZE) {
             return true;
         }
+
         int second = 0;
+
         for (int i = 0, j = FIELD_SIZE - 1; i < FIELD_SIZE && j >= 0; i++, j--) {
             if (GAME_FIELD[i][j] == (isCurrentX ? X : O)) {
                 second++;
             }
         }
+
         if (second == FIELD_SIZE) {
             return true;
         }
