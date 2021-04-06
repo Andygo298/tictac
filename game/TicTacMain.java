@@ -9,6 +9,7 @@ import java.util.logging.LogManager;
 public class TicTacMain {
 
     public static void main(String[] args) {
+        ProcessGame processGame = new ProcessGame();
 
         try {
             LogManager.getLogManager().readConfiguration(
@@ -16,8 +17,6 @@ public class TicTacMain {
         } catch (IOException e) {
             System.err.println("Could not setup logger configuration: " + e.toString());
         }
-
-        ProcessGame processGame = new ProcessGame();
 
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
             while (true){

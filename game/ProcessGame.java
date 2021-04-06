@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 public class ProcessGame {
 
     private static Logger log = Logger.getLogger(ProcessGame.class.getName());
-
     private int FIELD_SIZE;
     private char[][] GAME_FIELD;
     private boolean isSecondPlayerAI;
@@ -66,7 +65,7 @@ public class ProcessGame {
                 System.out.println("Player - "+ (isCurrentX ? 'X' : 'O') +" won!!");
                 break;
             }
-            if (isCellFree()) {
+            if (isDraw()) {
                 System.out.println("DRAW!!");
                 break;
             }
@@ -78,7 +77,7 @@ public class ProcessGame {
                     System.out.println("YOU lose!");
                     break;
                 }
-                if (isCellFree()) {
+                if (isDraw()) {
                     System.out.println("DRAW!!");
                     break;
                 }
@@ -152,7 +151,7 @@ public class ProcessGame {
         return true;
     }
 
-    private boolean isCellFree() {
+    private boolean isDraw() {
         for (int row = 0; row < FIELD_SIZE; row++) {
             for (int column = 0; column < FIELD_SIZE; column++) {
                 if (GAME_FIELD[row][column] == FREE_CELL) {
