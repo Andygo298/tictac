@@ -142,10 +142,6 @@ public class ProcessGame {
         if ((x >= 0 && x < FIELD_SIZE) && (y >= 0 && y < FIELD_SIZE)) {
             if (GAME_FIELD[y][x] == FREE_CELL) {
                 return false;
-            } else {
-                if (!isSecondPlayerAI) {
-
-                }
             }
         } else {
             System.out.println("WRONG INPUT. Field size is " + GAME_FIELD.length);
