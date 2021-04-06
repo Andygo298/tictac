@@ -30,7 +30,7 @@ public class ProcessGame {
                     FIELD_SIZE = Integer.parseInt(reader.readLine());
                     GAME_FIELD = new char[FIELD_SIZE][FIELD_SIZE];
                 } catch (NumberFormatException ex) {
-                    log.log(Level.WARNING,"incorrect input",ex);
+                    log.log(Level.WARNING, "incorrect input", ex);
                     System.out.println("WRONG INPUT");
                     continue;
                 }
@@ -62,7 +62,7 @@ public class ProcessGame {
         while (true) {
             movePlayer();
             if (isGameOver(isCurrentX)) {
-                System.out.println("Player - "+ (isCurrentX ? 'X' : 'O') +" won!!");
+                System.out.println("Player - " + (isCurrentX ? 'X' : 'O') + " won!!");
                 break;
             }
             if (isDraw()) {
@@ -71,8 +71,6 @@ public class ProcessGame {
             }
             if (isSecondPlayerAI) {
                 moveAI();
-                System.out.println("AI moving...");
-                painter.printGameField(GAME_FIELD);
                 if (isGameOver(isCurrentX)) {
                     System.out.println("YOU lose!");
                     break;
@@ -89,21 +87,23 @@ public class ProcessGame {
     private void movePlayer() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
-            int x, y;
+            int column;
+            int row;
             while (true) {
                 try {
                     System.out.println("Input column:");
-                    x = Integer.parseInt(reader.readLine()) - 1;
+                    column = Integer.parseInt(reader.readLine()) - 1;
                     System.out.println("Input row:");
-                    y = Integer.parseInt(reader.readLine()) - 1;
+                    row = Integer.parseInt(reader.readLine()) - 1;
 
-                    if (isCellValid(x, y)) {
+                    if (isCellValid(column, row)) {
+                        System.out.println("CELL IS NOT FREE, input again");
                         continue;
                     }
-                    GAME_FIELD[y][x] = !isCurrentX ? 'X' : 'O';
+                    GAME_FIELD[row][column] = !isCurrentX ? 'X' : 'O';
                     break;
-                }catch (NumberFormatException ex){
-                    log.log(Level.WARNING,"move player - incorrect input!",ex);
+                } catch (NumberFormatException ex) {
+                    log.log(Level.WARNING, "move player - incorrect input!", ex);
                     System.out.println("Wrong input, try again!");
                 }
             }
@@ -123,15 +123,15 @@ public class ProcessGame {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        int x;
-        int y;
-        while (true){
-            x = random.nextInt(FIELD_SIZE);
-            y = random.nextInt(FIELD_SIZE);
-            if (isCellValid(x, y)) {
+        int column;
+        int row;
+        while (true) {
+            column = random.nextInt(FIELD_SIZE);
+            row = random.nextInt(FIELD_SIZE);
+            if (isCellValid(column, row)) {
                 continue;
             }
-            GAME_FIELD[y][x] = !isCurrentX ? 'X' : 'O';
+            GAME_FIELD[row][column] = !isCurrentX ? 'X' : 'O';
             break;
         }
         isCurrentX = !isCurrentX;
@@ -143,7 +143,9 @@ public class ProcessGame {
             if (GAME_FIELD[y][x] == FREE_CELL) {
                 return false;
             } else {
-                System.out.println("CELL IS NOT FREE, input again");
+                if (!isSecondPlayerAI) {
+
+                }
             }
         } else {
             System.out.println("WRONG INPUT. Field size is " + GAME_FIELD.length);

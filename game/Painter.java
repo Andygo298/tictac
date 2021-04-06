@@ -9,9 +9,9 @@ public class Painter {
     }
 
     public void initGameField(char[][] gameField) {
-        for (int i = 0; i < gameField.length; i++) {
-            for (int j = 0; j < gameField.length; j++) {
-                gameField[i][j] = FREE_CELL;
+        for (int row = 0; row < gameField.length; row++) {
+            for (int column = 0; column < gameField.length; column++) {
+                gameField[row][column] = FREE_CELL;
             }
         }
     }
